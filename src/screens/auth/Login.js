@@ -5,14 +5,14 @@ import {
   View,
   TextInput,
   SafeAreaView,
-  TouchableOpacity,
+  TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
 import {COLORS, ROUTES} from '../../constants';
 import {LinearGradient} from 'expo-linear-gradient';
 
 const Login = (props) => {
   return (
-    <SafeAreaView style={styles.main}>
+    <KeyboardAvoidingView style={styles.main} behavior={'padding'} keyboardVerticalOffset={Platform.OS === 'android' ? -250 : 30}>
       <View style={styles.container}>
         <View style={styles.wFull}>
           <View style={styles.row}>
@@ -22,7 +22,7 @@ const Login = (props) => {
 
           <Text style={styles.loginContinueTxt}>Login in to continue</Text>
           <TextInput style={styles.input} placeholder="Email"/>
-          <TextInput style={styles.input} placeholder="Password"/>
+          <TextInput style={styles.input} textContentType={'password'} secureTextEntry placeholder="Password"/>
 
           <View style={styles.loginBtnWrapper}>
             <LinearGradient
@@ -31,7 +31,8 @@ const Login = (props) => {
               start={{y: 0.0, x: 0.0}}
               end={{y: 1.0, x: 0.0}}>
               {/******************** LOGIN BUTTON *********************/}
-              <TouchableOpacity onPress={() => props.navigation.navigate(ROUTES.HOME)} activeOpacity={0.7} style={styles.loginBtn}>
+              <TouchableOpacity onPress={() => props.navigation.navigate(ROUTES.HOME)} activeOpacity={0.7}
+                                style={styles.loginBtn}>
                 <Text style={styles.loginText}>Log In</Text>
               </TouchableOpacity>
             </LinearGradient>
@@ -56,7 +57,7 @@ const Login = (props) => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -65,8 +66,6 @@ export default Login;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 16,
   },
   container: {
@@ -137,7 +136,6 @@ const styles = StyleSheet.create({
   },
   // footer
   footer: {
-    position: 'absolute',
     bottom: 42,
     textAlign: 'center',
     flexDirection: 'row',

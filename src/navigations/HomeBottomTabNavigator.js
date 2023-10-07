@@ -3,7 +3,7 @@ import {Home, Notifications, Settings, Wallet} from '../screens';
 import {COLORS, ROUTES} from '../constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SettingsNavigator from './SettingsNavigator';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import CustomTabBarButton from '../components/CustomTabBarButton';
 import CustomTabBar from '../components/CustomTabBar';
 
@@ -15,19 +15,19 @@ export default function HomeBottomTabNavigator() {
       tabBar={props => <CustomTabBar {...props}/>}
       screenOptions={({route}) => ({
         headerShown: false,
-        tabBarShowLabel:false,
+        tabBarShowLabel:Platform.OS === 'ios'? false:true,
         tabBarInactiveTintColor: COLORS.dark,
         tabBarStyle: styles.tabBarStyle,
         tabBarActiveTintColor: COLORS.primary,
         tabBarIcon: ({color, size, focused}) => {
           let iconName;
-          if (route.name === ROUTES.HOME) {
+          if (route.name === ROUTES.HOME && Platform.OS === 'ios') {
             iconName = focused ? 'ios-home-sharp' : 'ios-home-outline';
-          } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
+          } else if (route.name === ROUTES.SETTINGS_NAVIGATOR && Platform.OS === 'ios') {
             iconName = focused ? 'settings' : 'settings-outline';
-          } else if (route.name === ROUTES.WALLET) {
+          } else if (route.name === ROUTES.WALLET && Platform.OS === 'ios') {
             iconName = focused ? 'wallet' : 'wallet-outline';
-          } else if (route.name === ROUTES.NOTIFICATIONS) {
+          } else if (route.name === ROUTES.NOTIFICATIONS && Platform.OS === 'ios') {
             iconName = focused
               ? 'md-notifications-sharp'
               : 'md-notifications-outline';
