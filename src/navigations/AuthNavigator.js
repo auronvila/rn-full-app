@@ -1,7 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import {ForgotPassword, Home, Login, Notifications, Profile, Register, Settings} from '../screens';
+import {ForgotPassword, Login, Register,} from '../screens';
 import {COLORS, ROUTES} from '../constants';
-import HomeBottomTabNavigator from './HomeBottomTabNavigator';
 import Drawernavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator();
@@ -26,6 +25,7 @@ export default function AuthNavigator() {
       })}/>
       <Stack.Screen name={ROUTES.REGISTER} component={Register}/>
       <Stack.Screen name={ROUTES.HOME} component={Drawernavigator} options={{
+        gestureEnabled:false,
         headerShown: false
       }}/>
     </Stack.Navigator>

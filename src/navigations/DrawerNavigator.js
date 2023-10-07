@@ -12,7 +12,9 @@ export default function Drawernavigator() {
     <Drawer.Navigator screenOptions={{
       drawerActiveBackgroundColor: COLORS.primary,
       drawerActiveTintColor: COLORS.white,
-      drawerLabelStyle: {marginLeft: -20}
+      drawerLabelStyle: {marginLeft: -20},
+      swipeEnabled:false,
+      gestureEnabled: false,
     }}>
       <Drawer.Screen
         options={{
