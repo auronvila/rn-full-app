@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../../constants';
 import jsonServer from '../../api/jsonServer';
 
 const Notifications = () => {
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     try {
-
-      getComments()
+      setTimeout(() => {
+        getComments();
+        setIsLoading(false);
+      }, 1000)
     } catch (e) {
       console.log(e)
     }
@@ -19,6 +22,15 @@ const Notifications = () => {
     const response = await jsonServer.get('/comments');
     const data = response.data;
     setComments(data);
+  }
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator color={COLORS.primary} size={'large'}/>
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    )
   }
 
   return (
@@ -84,5 +96,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 19,
     marginBottom: 14,
+  },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: COLORS.bgColor,
+    paddingTop: StatusBar.currentHeight,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
