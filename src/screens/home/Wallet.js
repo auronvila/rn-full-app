@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../constants';
+import Slider from '../../components/Slider';
 
 const Wallet = () => {
   return (
@@ -11,7 +12,7 @@ const Wallet = () => {
         alignItems: 'center',
         backgroundColor: COLORS.bgColor,
       }}>
-      <Text>Wallet!</Text>
+     <Slider/>
     </View>
   );
 };
