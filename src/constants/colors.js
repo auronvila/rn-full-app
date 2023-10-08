@@ -4,6 +4,7 @@ export default {
   white: '#FFFFFF',
   dark: '#444',
   bgColor: '#82ccdd',
+  bgColor2: '#82cccc',
   warning: '#f0d500',
   danger: '#FF0D0E',
   gray: '#666666',

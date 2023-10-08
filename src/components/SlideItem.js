@@ -18,18 +18,17 @@ export default function SlideItem(props){
 
 const styles = StyleSheet.create({
   image:{
-  width:'80%',
+  width:'70%',
   flex:0.6,
   },
   title:{
-  fontSize:24,
+  fontSize:25,
     fontWeight:'bold',
     color:'black',
-    flex:0.2
+    flex:0.3
   },
   description:{
     fontSize:18,
-    marginVertical:12,
     color:'black',
   },
   price:{

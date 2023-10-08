@@ -4,6 +4,7 @@ import SlideItem from './SlideItem';
 import Pagination from './Pagination';
 import {useRoute} from '@react-navigation/native';
 import {useRef, useState} from 'react';
+import CustomButton from './common/Button';
 
 export default function Slider() {
   const [index, setIndex] = useState(0)
@@ -32,6 +33,7 @@ export default function Slider() {
         viewabilityConfig={viewabilityConfig}
         renderItem={({item}) => <SlideItem item={item}/>}/>
       <Pagination index={index} scrollx={scrollX} data={Slides}/>
+      <CustomButton text={'Buy Now'}/>
     </View>
   )
 }
