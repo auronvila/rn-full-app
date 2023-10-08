@@ -4,7 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  SafeAreaView,
   TouchableOpacity, KeyboardAvoidingView, Platform,
 } from 'react-native';
 import {COLORS, ROUTES} from '../../constants';
@@ -13,7 +12,8 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required('UserName is required').email('Please enter a valid email'),
+  username: Yup.string().required('UserName is required'),
+    // .email('Please enter a valid email'),
   password: Yup.string().required('Password is required'),
 });
 
@@ -23,8 +23,9 @@ const Login = (props) => {
     password: '',
   };
 
-  const handleLogin = (values) => {
+  const handleLogin = (values,{resetForm}) => {
     console.log('Submitted:', values);
+    resetForm();
     props.navigation.navigate(ROUTES.HOME);
   };
 
@@ -48,7 +49,6 @@ const Login = (props) => {
                 {/*<Logo width={55} height={55} style={styles.mr7} />*/}
                 <Text style={styles.brandName}>Auron</Text>
               </View>
-
               <Text style={styles.loginContinueTxt}>
                 Login in to continue
               </Text>
@@ -92,7 +92,7 @@ const Login = (props) => {
                   start={{y: 0.0, x: 0.0}}
                   end={{y: 1.0, x: 0.0}}
                 >
-                  {/* LOGIN BUTTON */}
+                  {/***************** LOGIN BUTTON ******************/}
                   <TouchableOpacity
                     onPress={formikProps.handleSubmit}
                     activeOpacity={0.7}
@@ -103,7 +103,7 @@ const Login = (props) => {
                 </LinearGradient>
               </View>
 
-              {/* FORGOT PASSWORD BUTTON */}
+              {/***************** FORGOT PASSWORD BUTTON *****************/}
               <TouchableOpacity style={styles.forgotPassBtn}>
                 <Text
                   onPress={() =>
@@ -122,7 +122,7 @@ const Login = (props) => {
               <Text style={styles.footerText}>
                 Don't have an account?{' '}
               </Text>
-              {/* REGISTER BUTTON */}
+              {/***************** REGISTER BUTTON *****************/}
               <TouchableOpacity
                 onPress={() =>
                   props.navigation.navigate(ROUTES.REGISTER, {
