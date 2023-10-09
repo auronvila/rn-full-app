@@ -6,6 +6,7 @@ import jsonServer from '../../api/jsonServer';
 const Notifications = () => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     try {
@@ -24,6 +25,13 @@ const Notifications = () => {
     setComments(data);
   }
 
+
+  function handleRefresh() {
+    setRefreshing(true);
+    getComments();
+    setRefreshing(false);
+  }
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
@@ -38,6 +46,8 @@ const Notifications = () => {
       style={styles.container}>
       <View style={styles.listContainer}>
         <FlatList
+          onRefresh={handleRefresh}
+          refreshing={refreshing}
           ListHeaderComponent={<Text style={styles.headerStyle}>Welcome to notifications</Text>}
           ListEmptyComponent={<Text>No comments were found</Text>}
           showsVerticalScrollIndicator={false}
@@ -96,6 +106,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 19,
     marginBottom: 14,
+    marginTop: 14,
   },
   loadingContainer: {
     flex: 1,
